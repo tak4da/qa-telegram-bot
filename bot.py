@@ -1,7 +1,7 @@
 import logging
 import os
 from aiogram import Bot, Dispatcher, types
-from aiogram.types import ParseMode
+from aiogram.enums import ParseMode
 from aiogram.utils import executor
 from docx import Document
 
