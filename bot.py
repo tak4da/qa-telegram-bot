@@ -4,7 +4,7 @@ from aiogram import Bot, Dispatcher, types
 from aiogram.enums import ParseMode
 from aiogram.fsm.context import FSMContext
 from aiogram.filters import Command
-from aiogram.utils import executor
+await dp.start_polling()
 from docx import Document
 
 # Настройки бота
