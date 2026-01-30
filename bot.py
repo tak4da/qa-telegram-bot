@@ -1,8 +1,7 @@
 import logging
 import os
-from aiogram import Bot, Dispatcher, types
-from aiogram.enums import ParseMode
-from aiogram.utils import executor
+from aiogram import Bot, Dispatcher, types, executor
+from aiogram.types import ParseMode
 from docx import Document
 
 # Настройки бота
@@ -127,6 +126,13 @@ async def handle_question(message: types.Message):
     else:
         await message.reply("Извините, я не нашел подходящего ответа.")
 
+async def main():
+    if not API_TOKEN:
+        raise RuntimeError("Нет BOT_TOKEN (или TOKEN) в переменных окружения.")
+    
+    bot = Bot(API_TOKEN)
+    await dp.start_polling()
+
 if __name__ == "__main__":
-    from aiogram import executor
-    executor.start_polling(dp, skip_updates=True)
+    import asyncio
+    asyncio.run(main())
