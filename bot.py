@@ -6,12 +6,11 @@ from dataclasses import dataclass
 from typing import List, Tuple, Optional
 from collections import Counter
 
-from aiogram import Bot, Dispatcher
-from aiogram.enums import ParseMode
+from aiogram import Bot, Dispatcher, types
+from aiogram.filters import Command
+from aiogram.types import Message
 from aiogram.client.bot import DefaultBotProperties
-from aiogram.types import Message
-from aiogram.types import Message
-from aiogram.dispatcher.filters import Command
+from aiogram.enums import ParseMode
 from docx import Document
 
 logging.basicConfig(level=logging.INFO)
