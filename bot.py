@@ -10,7 +10,8 @@ from aiogram import Bot, Dispatcher
 from aiogram.enums import ParseMode
 from aiogram.client.bot import DefaultBotProperties
 from aiogram.types import Message
-from aiogram.types import Command
+from aiogram.types import Message
+from aiogram.dispatcher.filters import Command
 from docx import Document
 
 logging.basicConfig(level=logging.INFO)
@@ -212,8 +213,8 @@ index = QASearch(DOCX_PATH)
 
 last_candidates = {}  
 
-@dp.message(CommandStart())
-async def on_start(message: types.Message):
+@dp.message(Command('start'))
+async def on_start(message: Message):
     text = (
         "Привет! Я бот-помощник по FAQ.\n"
         "Напиши вопрос своими словами.\n\n"
@@ -223,8 +224,8 @@ async def on_start(message: types.Message):
     )
     await message.answer(text)
 
-@dp.message(Command("info"))
-async def on_info(message: types.Message):
+@dp.message(Command('info'))
+async def on_info(message: Message):
     await message.answer(
         f"Файл: {DOCX_PATH}\n"
         f"QA в памяти: {len(index.qa)}\n"
@@ -232,8 +233,8 @@ async def on_info(message: types.Message):
         f"Порог мульти-ответа: {MIN_SCORE_FOR_MULTI}\n"
     )
 
-@dp.message(Command("reload"))
-async def on_reload(message: types.Message):
+@dp.message(Command('reload'))
+async def on_reload(message: Message):
     try:
         count = index.load()
         await message.answer(f"Ок, перечитал базу. Вопросов: {count}")
